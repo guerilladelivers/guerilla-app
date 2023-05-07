@@ -17,4 +17,4 @@ jobs:
         id: step_two
         run: |
 
-          echo "${{ env.action_state }}"
+          echo "${{ env.REACT_APP_API_KEY }}"
