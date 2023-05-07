@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "./static/css/main.7a60a492.css",
-    "main.js": "./static/js/main.e39bb5c2.js",
-    "static/media/background.png": "./static/media/background.45f998669e1866bcda6b.png",
-    "static/media/logo.svg": "./static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "./index.html",
-    "main.7a60a492.css.map": "./static/css/main.7a60a492.css.map",
-    "main.e39bb5c2.js.map": "./static/js/main.e39bb5c2.js.map"
+    "main.css": "/guerilla-app/static/css/main.7a60a492.css",
+    "main.js": "/guerilla-app/static/js/main.dc090a55.js",
+    "static/media/background.png": "/guerilla-app/static/media/background.45f998669e1866bcda6b.png",
+    "static/media/logo.svg": "/guerilla-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/guerilla-app/index.html",
+    "main.7a60a492.css.map": "/guerilla-app/static/css/main.7a60a492.css.map",
+    "main.dc090a55.js.map": "/guerilla-app/static/js/main.dc090a55.js.map"
   },
   "entrypoints": [
     "static/css/main.7a60a492.css",
-    "static/js/main.e39bb5c2.js"
+    "static/js/main.dc090a55.js"
   ]
 }
