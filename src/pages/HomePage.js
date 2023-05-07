@@ -11,7 +11,7 @@ const HomePage = () => {
     let eventApi = new EventApi();
     eventApi.getMyEvents().then((data) => {
       console.log(data);
-      setEvents(data);
+      setEvents(process.env.REACT_APP_API_KEY);
     });
   }, []);
 
