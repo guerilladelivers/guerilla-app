@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/guerilladelivers/guerilla-app/static/css/main.7a60a492.css",
-    "main.js": "/guerilladelivers/guerilla-app/static/js/main.fd11f8bf.js",
-    "static/media/background.png": "/guerilladelivers/guerilla-app/static/media/background.45f998669e1866bcda6b.png",
-    "static/media/logo.svg": "/guerilladelivers/guerilla-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/guerilladelivers/guerilla-app/index.html",
-    "main.7a60a492.css.map": "/guerilladelivers/guerilla-app/static/css/main.7a60a492.css.map",
-    "main.fd11f8bf.js.map": "/guerilladelivers/guerilla-app/static/js/main.fd11f8bf.js.map"
+    "main.css": "./static/css/main.7a60a492.css",
+    "main.js": "./static/js/main.e39bb5c2.js",
+    "static/media/background.png": "./static/media/background.45f998669e1866bcda6b.png",
+    "static/media/logo.svg": "./static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "./index.html",
+    "main.7a60a492.css.map": "./static/css/main.7a60a492.css.map",
+    "main.e39bb5c2.js.map": "./static/js/main.e39bb5c2.js.map"
   },
   "entrypoints": [
     "static/css/main.7a60a492.css",
-    "static/js/main.fd11f8bf.js"
+    "static/js/main.e39bb5c2.js"
   ]
 }
