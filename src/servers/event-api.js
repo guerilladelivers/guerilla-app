@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class EventApi {
   constructor() {
-    this.baseUrl = process.env.REACT_APP_EVENTBRITE_API_URL;
+    this.baseUrl = "https://www.eventbriteapi.com/v3";
   }
 
   async getMyEvents(status = "live") {
