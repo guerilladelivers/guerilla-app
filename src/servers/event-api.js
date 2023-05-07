@@ -6,11 +6,11 @@ export default class EventApi {
   }
 
   async getMyEvents(status = "live") {
-    const url = `${this.baseUrl}/organizations/${process.env.REACT_APP_ORG_ID}/events/?status=${status}`;
+    const url = `${this.baseUrl}/organizations/1538040099613/events/?status=${status}`;
 
     const response = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+        Authorization: `Bearer XWWD4HUZ7NTFP3SIE2GE`,
       },
     });
 

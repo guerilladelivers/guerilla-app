@@ -8,7 +8,6 @@ const HomePage = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_KEY);
     let eventApi = new EventApi();
     eventApi.getMyEvents().then((data) => {
       setEvents(data);
