@@ -15,13 +15,10 @@ jobs:
       - name: Build
         run: |
           npm install
-          npm run-script build
+          npm run build
         env:
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
           REACT_APP_ORG_ID: ${{ secrets.REACT_APP_ORG_ID }}
-
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          BRANCH: gh-pages
-          FOLDER: build
+        run: |
+          npm run deploy
