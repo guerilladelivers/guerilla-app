@@ -1,12 +1,17 @@
 import React from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 
-const EventCreatingForm = () => {
+const EventCreatingForm = ({ event, handleChange }) => {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formTitle">
         <Form.Label>Title</Form.Label>
-        <Form.Control type="text" placeholder="Enter title" />
+        <Form.Control
+          type="text"
+          placeholder="Enter title"
+          value={event.name}
+          onChange={handleChange}
+        />
       </Form.Group>
 
       <Row className="mb-3">
@@ -34,19 +39,15 @@ const EventCreatingForm = () => {
         </Form.Group>
       </Row>
 
-      <Form.Group className="mb-3" controlId="formAddress1">
-        <Form.Label>Address</Form.Label>
+      <Form.Group className="mb-3" controlId="formLocation">
+        <Form.Label>Location</Form.Label>
         <Form.Control placeholder="1234 Main St" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formAddress2">
-        <Form.Label>Address 2</Form.Label>
-        <Form.Control placeholder="Apartment, studio, or floor" />
+      <Form.Group className="mb-3" controlId="formDescription">
+        <Form.Label>Description</Form.Label>
+        <Form.Control as="textarea" rows={3} />
       </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
     </Form>
   );
 };

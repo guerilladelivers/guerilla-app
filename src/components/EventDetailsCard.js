@@ -3,20 +3,25 @@ import Card from "react-bootstrap/Card";
 import BackGroundImage from "../img/background.png";
 import "./EventDetailsCard.css";
 
-const EventDetailsCard = ({ event }) => {
+const EventDetailsCard = ({ event, status }) => {
   return (
-    <Card className="bg-dark text-white">
-      <Card.Img src={BackGroundImage} alt="Background image" />
-      <Card.ImgOverlay>
-        <Card.Title>{event.name.text}</Card.Title>
+    <Card className="bg-light text-dark" style={{ height: "650px" }}>
+      <Card.Header className="text-truncate">{event.name.text}</Card.Header>
+      <Card.Img
+        src={event.logo?.url ?? BackGroundImage}
+        alt="Background image"
+        className="card-img-top"
+      />
+      <Card.Body>
+        <Card.Title className="text-truncate">{event.summary}</Card.Title>
         <Card.Text className="text-time">
           {`${event.start.local}-${event.end.local}`}
         </Card.Text>
         <Card.Text>{event.description.text}</Card.Text>
         <Card.Link href={event.url} className="text-link">
-          Joining
+          {status === "live" ? "Joining" : "Publish"}
         </Card.Link>
-      </Card.ImgOverlay>
+      </Card.Body>
     </Card>
   );
 };

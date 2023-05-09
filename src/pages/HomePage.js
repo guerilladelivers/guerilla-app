@@ -1,31 +1,103 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import EventCreatingForm from "../components/EventCreatingForm";
 import EventDetailsCard from "../components/EventDetailsCard";
-import EventApi from "../servers/event-api";
+import { eventBO } from "../servers";
 import "./HomePage.css";
 
 const HomePage = () => {
-  const [events, setEvents] = useState([]);
+  const [upcomingEvents, setUpcommingEvents] = useState([]);
+  const [draftEvents, setDraftEvents] = useState([]);
+  const [showCreatEvent, setShowCreatEvent] = useState(false);
+  const [eventInfo, setEventInfo] = useState({
+    name: "",
+  });
+
+  const handleCloseCreateEventModal = () => setShowCreatEvent(false);
+  const handleShowCreateEventModal = () => setShowCreatEvent(true);
+
+  const handleEventChange = (e) => {
+    setEventInfo({ name: e.target.value });
+  };
+
+  const handleEventCreate = () => {
+    console.log(eventInfo);
+    setShowCreatEvent(false);
+  };
+
+  const SOURCE_EVENT_ID = "632706541297";
 
   useEffect(() => {
-    let eventApi = new EventApi();
-    eventApi.getMyEvents().then((data) => {
-      setEvents(data);
+    eventBO.getLiveEvents().then((data) => {
+      console.log(data);
+      setUpcommingEvents(data);
+    });
+
+    eventBO.getDraftEvents().then((data) => {
+      setDraftEvents(data);
     });
   }, []);
 
   return (
-    <Container className="p-5 mb-4 bg-light rounded-3">
+    <Container className="p-3 mb-4 bg-light rounded-3">
       <h1>Events</h1>
 
       <div className="m-1">
-        <div className="title mt-4">
-          <h3>Upcoming events</h3>
-        </div>
-        <Row xs={1} md={2} className="g-4">
-          {events.map((e, idx) => (
+        <Row>
+          <Col className="title mt-4">
+            <p>Upcoming events</p>
+          </Col>
+          <Col className="mt-4 mb-2 d-flex flex-row-reverse">
+            <Button variant="primary" onClick={handleShowCreateEventModal}>
+              Create New Event
+            </Button>
+
+            <Modal show={showCreatEvent} onHide={handleCloseCreateEventModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Create a new event</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <EventCreatingForm
+                  event={eventInfo}
+                  handleChange={handleEventChange}
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="secondary"
+                  onClick={handleCloseCreateEventModal}
+                >
+                  Cancel
+                </Button>
+                <Button variant="primary" onClick={handleEventCreate}>
+                  Create
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </Col>
+        </Row>
+
+        <Row xs={1} md={3} className="g-4">
+          {upcomingEvents.map((e, idx) => (
             <Col key={e.url}>
-              <EventDetailsCard event={e} />
+              <EventDetailsCard event={e} status={"live"} />
+            </Col>
+          ))}
+        </Row>
+      </div>
+
+      <div className="m-1">
+        <Row>
+          <Col className="title mt-4">
+            <p>Draft events</p>
+          </Col>
+          <Col className="mt-4 mb-2 d-flex flex-row-reverse"></Col>
+        </Row>
+
+        <Row xs={1} md={3} className="g-4">
+          {draftEvents.map((e, idx) => (
+            <Col key={e.url}>
+              <EventDetailsCard event={e} status={"draft"} />
             </Col>
           ))}
         </Row>
