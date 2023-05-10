@@ -4,11 +4,12 @@ import { Col, Form, Row } from "react-bootstrap";
 const EventCreatingForm = ({ event, handleChange }) => {
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="formTitle">
-        <Form.Label>Title</Form.Label>
+      <Form.Group className="mb-3" controlId="formName">
+        <Form.Label>Name</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter title"
+          name="name"
+          placeholder="Enter name"
           value={event.name}
           onChange={handleChange}
         />
@@ -19,10 +20,20 @@ const EventCreatingForm = ({ event, handleChange }) => {
           <Form.Label>Start Date</Form.Label>
           <Row>
             <Col>
-              <Form.Control type="date" />
+              <Form.Control
+                name="startDate"
+                type="date"
+                value={event.startDate}
+                onChange={handleChange}
+              />
             </Col>
             <Col>
-              <Form.Control type="time" />
+              <Form.Control
+                name="startTime"
+                type="time"
+                value={event.startTime}
+                onChange={handleChange}
+              />
             </Col>
           </Row>
         </Form.Group>
@@ -30,10 +41,20 @@ const EventCreatingForm = ({ event, handleChange }) => {
           <Form.Label>End Date</Form.Label>
           <Row>
             <Col>
-              <Form.Control type="date" />
+              <Form.Control
+                name="endDate"
+                type="date"
+                value={event.endDate}
+                onChange={handleChange}
+              />
             </Col>
             <Col>
-              <Form.Control type="time" />
+              <Form.Control
+                name="endTime"
+                type="time"
+                value={event.endTime}
+                onChange={handleChange}
+              />
             </Col>
           </Row>
         </Form.Group>
@@ -41,12 +62,23 @@ const EventCreatingForm = ({ event, handleChange }) => {
 
       <Form.Group className="mb-3" controlId="formLocation">
         <Form.Label>Location</Form.Label>
-        <Form.Control placeholder="1234 Main St" />
+        <Form.Control
+          name="location"
+          placeholder="1234 Main St"
+          value={event.location}
+          onChange={handleChange}
+        />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formDescription">
         <Form.Label>Description</Form.Label>
-        <Form.Control as="textarea" rows={3} />
+        <Form.Control
+          name="description"
+          as="textarea"
+          rows={3}
+          value={event.description}
+          onChange={handleChange}
+        />
       </Form.Group>
     </Form>
   );

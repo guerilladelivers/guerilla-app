@@ -17,19 +17,22 @@ const HomePage = () => {
   const handleShowCreateEventModal = () => setShowCreatEvent(true);
 
   const handleEventChange = (e) => {
-    setEventInfo({ name: e.target.value });
+    setEventInfo({
+      ...eventInfo,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleEventCreate = () => {
     console.log(eventInfo);
-    setShowCreatEvent(false);
+    eventBO.copyEvents(eventInfo).then((data) => {
+      console.log(data);
+      setShowCreatEvent(false);
+    });
   };
-
-  const SOURCE_EVENT_ID = "632706541297";
 
   useEffect(() => {
     eventBO.getLiveEvents().then((data) => {
-      console.log(data);
       setUpcommingEvents(data);
     });
 

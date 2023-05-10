@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default class EventApi {
-  constructor() {
+  constructor(orgId) {
     this.baseUrl = "https://www.eventbriteapi.com/v3";
     this.token = "XWWD4HUZ7NTFP3SIE2GE";
-    this.orgId = "1538040099613";
+    this.orgId = orgId;
   }
 
   async getMyEvents(status) {
@@ -22,23 +22,46 @@ export default class EventApi {
   async copyEvent(sourceId) {
     const url = `${this.baseUrl}/events/${sourceId}/copy/`;
 
-    const response = await axios.post(url, {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    });
+    const response = await axios.post(
+      url,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
 
     return response.data ?? {};
   }
 
-  async updateEvent(event) {
-    const url = `${this.baseUrl}/events/${event.id}`;
+  async updateEvent(eventId, eventInfo) {
+    const url = `${this.baseUrl}/events/${eventId}/`;
 
-    const response = await axios.post(url, {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
+    const response = await axios.post(
+      url,
+      {
+        event: {
+          name: {
+            html: eventInfo.name,
+          },
+          summary: eventInfo.description,
+          start: {
+            timezone: "America/Moncton",
+            utc: `${eventInfo.startDate}T${eventInfo.startTime}:00Z`,
+          },
+          end: {
+            timezone: "America/Moncton",
+            utc: `${eventInfo.endDate}T${eventInfo.endTime}:00Z`,
+          },
+        },
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
 
     return response.data ?? {};
   }
