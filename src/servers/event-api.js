@@ -54,8 +54,47 @@ export default class EventApi {
             timezone: "America/Moncton",
             utc: `${eventInfo.endDate}T${eventInfo.endTime}:00Z`,
           },
+          currency: "CAD",
         },
       },
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+
+    return response.data ?? {};
+  }
+
+  async createTicket(eventId) {
+    const url = `${this.baseUrl}/events/${eventId}/ticket_classes/`;
+
+    const response = await axios.post(
+      url,
+      {
+        ticket_class: {
+          name: "VIP",
+          quantity_total: 10,
+          cost: "CAD,1200",
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+
+    return response.data ?? {};
+  }
+
+  async publishEvent(eventId) {
+    const url = `${this.baseUrl}/events/${eventId}/publish/`;
+
+    const response = await axios.post(
+      url,
+      {},
       {
         headers: {
           Authorization: `Bearer ${this.token}`,

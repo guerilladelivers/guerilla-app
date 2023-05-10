@@ -1,26 +1,33 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
+import { Button, Card } from "react-bootstrap";
 import BackGroundImage from "../img/background.png";
+import { EventType } from "../servers/event-bo";
 import "./EventDetailsCard.css";
 
-const EventDetailsCard = ({ event, status }) => {
+const EventDetailsCard = ({ event, handlePublish }) => {
   return (
     <Card className="bg-light text-dark" style={{ height: "650px" }}>
-      <Card.Header className="text-truncate">{event.name.text}</Card.Header>
       <Card.Img
         src={event.logo?.url ?? BackGroundImage}
         alt="Background image"
         className="card-img-top"
       />
       <Card.Body>
-        <Card.Title className="text-truncate">{event.summary}</Card.Title>
+        <Card.Title className="text-truncate">{event.name.text}</Card.Title>
         <Card.Text className="text-time">
           {`${event.start.local}-${event.end.local}`}
         </Card.Text>
-        <Card.Text>{event.description.text}</Card.Text>
-        <Card.Link href={event.url} className="text-link">
-          {status === "live" ? "Joining" : "Publish"}
-        </Card.Link>
+        <Card.Text>{event.summary}</Card.Text>
+        <div className="d-flex justify-content-between">
+          <Card.Link href={event.url} className="text-link">
+            Preview
+          </Card.Link>
+          {event.status === EventType.Draft && (
+            <Button variant="primary" onClick={() => handlePublish(event.id)}>
+              Publish
+            </Button>
+          )}
+        </div>
       </Card.Body>
     </Card>
   );
