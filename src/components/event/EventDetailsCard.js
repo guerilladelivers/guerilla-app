@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
-import BackGroundImage from "../img/background.png";
-import { EventType } from "../servers/event-bo";
+import BackGroundImage from "../../img/background.png";
+import { EventType } from "../../servers/event-bo";
 import "./EventDetailsCard.css";
 
 const EventDetailsCard = ({ event, handlePublish }) => {
   return (
-    <Card className="bg-light text-dark" style={{ height: "650px" }}>
+    <Card className="bg-light text-dark" style={{ height: "600px" }}>
       <Card.Img
         src={event.logo?.url ?? BackGroundImage}
         alt="Background image"

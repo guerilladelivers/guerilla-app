@@ -1,18 +1,17 @@
 import axios from "axios";
+import config from "../config.json";
 
 export default class EventApi {
   constructor(orgId) {
-    this.baseUrl = "https://www.eventbriteapi.com/v3";
-    this.token = "XWWD4HUZ7NTFP3SIE2GE";
     this.orgId = orgId;
   }
 
   async getMyEvents(status) {
-    const url = `${this.baseUrl}/organizations/${this.orgId}/events/?status=${status}`;
+    const url = `${config.eventBrite.baseUrl}/organizations/${this.orgId}/events/?status=${status}`;
 
     const response = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${config.eventBrite.token}`,
       },
     });
 
@@ -20,14 +19,14 @@ export default class EventApi {
   }
 
   async copyEvent(sourceId) {
-    const url = `${this.baseUrl}/events/${sourceId}/copy/`;
+    const url = `${config.eventBrite.baseUrl}/events/${sourceId}/copy/`;
 
     const response = await axios.post(
       url,
       {},
       {
         headers: {
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${config.eventBrite.token}`,
         },
       }
     );
@@ -36,7 +35,7 @@ export default class EventApi {
   }
 
   async updateEvent(eventId, eventInfo) {
-    const url = `${this.baseUrl}/events/${eventId}/`;
+    const url = `${config.eventBrite.baseUrl}/events/${eventId}/`;
 
     const response = await axios.post(
       url,
@@ -59,7 +58,7 @@ export default class EventApi {
       },
       {
         headers: {
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${config.eventBrite.token}`,
         },
       }
     );
@@ -68,7 +67,7 @@ export default class EventApi {
   }
 
   async createTicket(eventId) {
-    const url = `${this.baseUrl}/events/${eventId}/ticket_classes/`;
+    const url = `${config.eventBrite.baseUrl}/events/${eventId}/ticket_classes/`;
 
     const response = await axios.post(
       url,
@@ -81,7 +80,7 @@ export default class EventApi {
       },
       {
         headers: {
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${config.eventBrite.token}`,
         },
       }
     );
@@ -90,14 +89,14 @@ export default class EventApi {
   }
 
   async publishEvent(eventId) {
-    const url = `${this.baseUrl}/events/${eventId}/publish/`;
+    const url = `${config.eventBrite.baseUrl}/events/${eventId}/publish/`;
 
     const response = await axios.post(
       url,
       {},
       {
         headers: {
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${config.eventBrite.token}`,
         },
       }
     );

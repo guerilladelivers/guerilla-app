@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Modal, Row, Spinner } from "react-bootstrap";
-import EventCreatingForm from "../components/EventCreatingForm";
-import EventDetailsCard from "../components/EventDetailsCard";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import EventCreatingForm from "../components/event/EventCreatingForm";
+import EventDetailsCard from "../components/event/EventDetailsCard";
+import CreateEventModal from "../components/home/CreateEventModal";
+import NavButtons from "../components/home/NavButtons";
+import Loading from "../components/util/Loading";
 import { eventBO } from "../servers";
 import "./HomePage.css";
 
@@ -57,54 +60,43 @@ const HomePage = () => {
     }
   }, [invalidate]);
 
+  const navItems = [
+    {
+      text: "Upcoming",
+      active: true,
+    },
+    {
+      text: "Past",
+    },
+  ];
+
   return (
     <Container className="p-3 mb-4 bg-light rounded-3">
       <h1>Events</h1>
       {isLoading ? (
-        <Spinner
-          animation="border"
-          role="status"
-          className="align-items-center"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        <Loading />
       ) : (
         <>
           <div className="m-1">
             <Row>
-              <Col className="title mt-4">
-                <p>Upcoming events</p>
+              <Col className="mt-4 d-flex flex-row">
+                <NavButtons items={navItems} />
               </Col>
               <Col className="mt-4 mb-2 d-flex flex-row-reverse">
                 <Button variant="primary" onClick={handleShowCreateEventModal}>
                   Create New Event
                 </Button>
 
-                <Modal
-                  show={showCreatEvent}
-                  onHide={handleCloseCreateEventModal}
+                <CreateEventModal
+                  isShowModal={showCreatEvent}
+                  onHandleClose={handleCloseCreateEventModal}
+                  onHandleSubmit={handleEventCreate}
                 >
-                  <Modal.Header closeButton>
-                    <Modal.Title>Create a new event</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <EventCreatingForm
-                      event={eventInfo}
-                      handleChange={handleEventChange}
-                    />
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button
-                      variant="secondary"
-                      onClick={handleCloseCreateEventModal}
-                    >
-                      Cancel
-                    </Button>
-                    <Button variant="primary" onClick={handleEventCreate}>
-                      Create
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
+                  <EventCreatingForm
+                    event={eventInfo}
+                    handleChange={handleEventChange}
+                  />
+                </CreateEventModal>
               </Col>
             </Row>
 
