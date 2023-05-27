@@ -34,49 +34,13 @@ export default class EventApi {
     return response.data ?? {};
   }
 
-  async updateEvent(eventId, eventInfo) {
+  async updateEvent(eventId, event) {
     const url = `${config.eventBrite.baseUrl}/events/${eventId}/`;
 
     const response = await axios.post(
       url,
       {
-        event: {
-          name: {
-            html: eventInfo.name,
-          },
-          summary: eventInfo.description,
-          start: {
-            timezone: "America/Moncton",
-            utc: `${eventInfo.startDate}T${eventInfo.startTime}:00Z`,
-          },
-          end: {
-            timezone: "America/Moncton",
-            utc: `${eventInfo.endDate}T${eventInfo.endTime}:00Z`,
-          },
-          currency: "CAD",
-        },
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${config.eventBrite.token}`,
-        },
-      }
-    );
-
-    return response.data ?? {};
-  }
-
-  async createTicket(eventId) {
-    const url = `${config.eventBrite.baseUrl}/events/${eventId}/ticket_classes/`;
-
-    const response = await axios.post(
-      url,
-      {
-        ticket_class: {
-          name: "VIP",
-          quantity_total: 10,
-          cost: "CAD,1200",
-        },
+        event,
       },
       {
         headers: {
