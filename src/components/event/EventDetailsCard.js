@@ -57,13 +57,17 @@ const EventDetailsCard = ({ event, handlePublish }) => {
         </div>
         {event.status === EventType.Live && (
           <div className="d-flex justify-content-center mt-4">
-            <FacebookShareButton url={event.url} quote={"AAA"} hashtag="#muo">
+            <FacebookShareButton
+              url={event.url}
+              quote={"Guerilla Delivers"}
+              hashtag="#guerilla"
+            >
               <FacebookIcon size={48} round />
             </FacebookShareButton>
             <TwitterShareButton
               url={event.url}
-              quote={"Dummy text!"}
-              hashtag="#muo"
+              quote={"Guerilla Delivers"}
+              hashtag="#guerilla"
             >
               <TwitterIcon size={48} round />
             </TwitterShareButton>
