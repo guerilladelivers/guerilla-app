@@ -1,0 +1,12 @@
+{
+  "eventBrite": {
+    "baseUrl": "https://www.eventbriteapi.com/v3",
+    "token": "XWWD4HUZ7NTFP3SIE2GE"
+  },
+  "customers": {
+    "thaimanao": {
+      "orgId": "1538040099613",
+      "sourceEventId": "633685228577"
+    }
+  }
+}

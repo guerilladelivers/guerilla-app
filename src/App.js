@@ -1,7 +1,7 @@
 import React from "react";
 
 import Container from "react-bootstrap/Container";
-import Header from "./components/Header";
+import Header from "./components/util/Header";
 import HomePage from "./pages/HomePage";
 
 function App() {
