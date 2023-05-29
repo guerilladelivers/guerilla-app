@@ -46,14 +46,20 @@ const HomePage = () => {
     });
   };
 
-  const handleEventPublish = (eventId) => {
-    eventBO.publishEvent(eventId);
+  const handleEventPublish = async (eventId) => {
+    setIsLoading(true);
+    await eventBO.publishEvent(eventId);
+    setIsLoading(false);
+    await fetchEvents(navItems[2]);
   };
 
-  const handleEventCreate = () => {
-    eventBO.copyEvent(eventInfo).then((data) => {
-      setShowCreatEvent(false);
-    });
+  const handleEventCreate = async () => {
+    setIsLoading(true);
+    setShowCreatEvent(false);
+
+    await eventBO.copyEvent(eventInfo);
+    setIsLoading(false);
+    await fetchEvents(navItems[2]);
   };
 
   const fetchEvents = (item) => {
@@ -74,7 +80,6 @@ const HomePage = () => {
             }
           })
         );
-        console.log(navItems);
       });
   };
 
